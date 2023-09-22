@@ -1,0 +1,21 @@
+class Solution {
+    List<List<Integer>> result;
+    public List<List<Integer>> subsets(int[] nums) {
+        result = new ArrayList();
+        if(nums==null || nums.length==0) return result;
+        backTrack(nums,new ArrayList<Integer>(),0);
+        return result;
+    }
+    void backTrack(int[] nums,ArrayList<Integer>temp,int index)
+    {
+        if(index>=nums.length)
+        {
+            result.add(new ArrayList<>(temp));
+            return;
+        }
+        temp.add(nums[index]);// case 1 : we pick the element
+        backTrack(nums,temp,index+1);
+        temp.remove(temp.size()-1);// case 2 : we don't pick the element 
+        backTrack(nums,temp,index+1);
+    }
+}
