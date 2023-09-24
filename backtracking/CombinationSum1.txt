@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result=new ArrayList<List<Integer>>();
+        helper(candidates,target,0,result,new ArrayList<Integer>());
+        return result;
+    }
+   void helper(int[] candidates, int target,int i,List<List<Integer>> result,ArrayList<Integer> temp)
+    {
+       
+        if(i==candidates.length)
+        {
+            if(target==0)
+            result.add(new ArrayList < >(temp));
+            return;
+        } 
+        if(target>=candidates[i])
+        {
+            temp.add(candidates[i]);//pick an element
+        helper(candidates,target-candidates[i],i,result,temp);
+        temp.remove(temp.size()-1);//backtracking so remove last inserted element
+        }
+        
+        
+         helper(candidates,target,i+1,result,temp);
+
+    }
+}
